@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413075042) do
+ActiveRecord::Schema.define(version: 20160413080634) do
 
   create_table "attractions", force: true do |t|
     t.string   "name"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 20160413075042) do
     t.integer  "venue_id"
   end
 
+  create_table "friendships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", using: :btree
+
   create_table "roles", force: true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -72,6 +81,20 @@ ActiveRecord::Schema.define(version: 20160413075042) do
 
   add_index "user_actions", ["object_type", "object_id", "action_type"], name: "index_user_actions_on_object_type_and_object_id_and_action_type", length: {"object_type"=>191, "object_id"=>nil, "action_type"=>nil}, using: :btree
   add_index "user_actions", ["user_id", "action_type"], name: "index_user_actions_on_user_id_and_action_type", using: :btree
+
+  create_table "user_comments", force: true do |t|
+    t.integer  "commentor_id"
+    t.string   "object_type"
+    t.integer  "object_id"
+    t.integer  "parent_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_comments", ["commentor_id"], name: "index_user_comments_on_commentor_id", using: :btree
+  add_index "user_comments", ["object_type", "object_id"], name: "index_user_comments_on_object_type_and_object_id", length: {"object_type"=>191, "object_id"=>nil}, using: :btree
+  add_index "user_comments", ["parent_id"], name: "index_user_comments_on_parent_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  limit: 191, default: "", null: false
