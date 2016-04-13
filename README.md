@@ -10,6 +10,6 @@
 
 # Setting up
 Run the following command
-```
-bundle install
-```
+  ```
+  bundle install
+  ```
