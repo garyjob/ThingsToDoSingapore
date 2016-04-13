@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413080634) do
+ActiveRecord::Schema.define(version: 20160413081631) do
 
   create_table "attractions", force: true do |t|
     t.string   "name"
@@ -58,6 +58,27 @@ ActiveRecord::Schema.define(version: 20160413080634) do
   end
 
   add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", using: :btree
+
+  create_table "resource_associations", force: true do |t|
+    t.integer  "resource_id"
+    t.string   "object_type"
+    t.integer  "object_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resource_associations", ["object_type", "object_id"], name: "index_resource_associations_on_object_type_and_object_id", length: {"object_type"=>191, "object_id"=>nil}, using: :btree
+  add_index "resource_associations", ["resource_id"], name: "index_resource_associations_on_resource_id", using: :btree
+
+  create_table "resources", force: true do |t|
+    t.string   "name"
+    t.string   "resource_type"
+    t.text     "resource_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resources", ["resource_type"], name: "index_resources_on_resource_type", length: {"resource_type"=>191}, using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"

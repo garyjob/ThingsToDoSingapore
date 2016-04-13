@@ -7,5 +7,7 @@ class CreateResourceAssociations < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :resource_associations, [:resource_id]
+    add_index :resource_associations, [:object_type, :object_id]
   end
 end
