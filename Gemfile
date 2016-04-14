@@ -43,3 +43,7 @@ gem 'omniauth'
 gem 'cancan', '=1.6.10'
 gem 'rolify', '=3.4.0'
 gem 'sitemap', '=0.3.3'
+
+# ElasticSearch support
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
