@@ -4,10 +4,10 @@ one:
   user_id: 1
   object_type: MyString
   object_id: 1
-  action_type: 1
+  association_type: 1
 
 two:
   user_id: 1
   object_type: MyString
   object_id: 1
-  action_type: 1
+  association_type: 1

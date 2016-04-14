@@ -91,17 +91,17 @@ ActiveRecord::Schema.define(version: 20160413081631) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", length: {"name"=>191, "resource_type"=>191, "resource_id"=>nil}, using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", length: {"name"=>191}, using: :btree
 
-  create_table "user_actions", force: true do |t|
+  create_table "user_associations", force: true do |t|
     t.integer  "user_id"
     t.string   "object_type"
     t.integer  "object_id"
-    t.integer  "action_type"
+    t.integer  "association_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user_actions", ["object_type", "object_id", "action_type"], name: "index_user_actions_on_object_type_and_object_id_and_action_type", length: {"object_type"=>191, "object_id"=>nil, "action_type"=>nil}, using: :btree
-  add_index "user_actions", ["user_id", "action_type"], name: "index_user_actions_on_user_id_and_action_type", using: :btree
+  add_index "user_associations", ["object_type", "object_id", "association_type"], name: "ass_index_2", length: {"object_type"=>191, "object_id"=>nil, "association_type"=>nil}, using: :btree
+  add_index "user_associations", ["user_id", "association_type"], name: "ass_index_1", using: :btree
 
   create_table "user_comments", force: true do |t|
     t.integer  "commentor_id"
