@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20160413081631) do
 
   create_table "attractions", force: true do |t|
-    t.string   "name"
+    t.string   "name",        null: false
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -22,16 +22,16 @@ ActiveRecord::Schema.define(version: 20160413081631) do
   end
 
   create_table "categories", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "category_associations", force: true do |t|
-    t.integer  "category_id"
-    t.string   "object_type"
-    t.integer  "object_id"
+    t.integer  "category_id", null: false
+    t.string   "object_type", null: false
+    t.integer  "object_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,19 +40,18 @@ ActiveRecord::Schema.define(version: 20160413081631) do
   add_index "category_associations", ["object_type", "object_id"], name: "index_category_associations_on_object_type_and_object_id", length: {"object_type"=>191, "object_id"=>nil}, using: :btree
 
   create_table "events", force: true do |t|
-    t.string   "name"
+    t.string   "name",        null: false
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "organizer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "venue_id"
   end
 
   create_table "friendships", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
+    t.integer  "user_id",    null: false
+    t.integer  "friend_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -60,9 +59,9 @@ ActiveRecord::Schema.define(version: 20160413081631) do
   add_index "friendships", ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", using: :btree
 
   create_table "resource_associations", force: true do |t|
-    t.integer  "resource_id"
-    t.string   "object_type"
-    t.integer  "object_id"
+    t.integer  "resource_id", null: false
+    t.string   "object_type", null: false
+    t.integer  "object_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,9 +70,9 @@ ActiveRecord::Schema.define(version: 20160413081631) do
   add_index "resource_associations", ["resource_id"], name: "index_resource_associations_on_resource_id", using: :btree
 
   create_table "resources", force: true do |t|
-    t.string   "name"
-    t.string   "resource_type"
-    t.text     "resource_value"
+    t.string   "name",           null: false
+    t.string   "resource_type",  null: false
+    t.text     "resource_value", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,23 +91,23 @@ ActiveRecord::Schema.define(version: 20160413081631) do
   add_index "roles", ["name"], name: "index_roles_on_name", length: {"name"=>191}, using: :btree
 
   create_table "user_associations", force: true do |t|
-    t.integer  "user_id"
-    t.string   "object_type"
-    t.integer  "object_id"
-    t.integer  "association_type"
+    t.integer  "user_id",          null: false
+    t.string   "object_type",      null: false
+    t.integer  "object_id",        null: false
+    t.integer  "association_type", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user_associations", ["object_type", "object_id", "association_type"], name: "ass_index_2", length: {"object_type"=>191, "object_id"=>nil, "association_type"=>nil}, using: :btree
-  add_index "user_associations", ["user_id", "association_type"], name: "ass_index_1", using: :btree
+  add_index "user_associations", ["object_type", "object_id", "association_type"], name: "a_2", length: {"object_type"=>191, "object_id"=>nil, "association_type"=>nil}, using: :btree
+  add_index "user_associations", ["user_id"], name: "a_1", using: :btree
 
   create_table "user_comments", force: true do |t|
-    t.integer  "commentor_id"
-    t.string   "object_type"
-    t.integer  "object_id"
+    t.integer  "commentor_id", null: false
+    t.string   "object_type",  null: false
+    t.integer  "object_id",    null: false
     t.integer  "parent_id"
-    t.text     "description"
+    t.text     "description",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -142,7 +141,7 @@ ActiveRecord::Schema.define(version: 20160413081631) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
 
   create_table "venues", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.integer  "latitude"
     t.integer  "longitude"
     t.string   "address"

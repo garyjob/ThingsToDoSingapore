@@ -1,11 +1,11 @@
 class CreateUserComments < ActiveRecord::Migration
   def change
     create_table :user_comments do |t|
-      t.integer :commentor_id
-      t.string :object_type
-      t.integer :object_id
+      t.integer :commentor_id, :null => false
+      t.string :object_type, :null => false
+      t.integer :object_id, :null => false
       t.integer :parent_id
-      t.text :description
+      t.text :description, :null => false
 
       t.timestamps
     end
