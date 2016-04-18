@@ -40,6 +40,7 @@ gem 'spring',        group: :development
 gem 'therubyracer'
 gem 'devise'
 gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'cancan', '=1.6.10'
 gem 'rolify', '=3.4.0'
 gem 'sitemap', '=0.3.3'
@@ -47,3 +48,8 @@ gem 'sitemap', '=0.3.3'
 # ElasticSearch support
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'pry'
+
+group :test, :development do
+  gem 'dotenv-rails'
+end
