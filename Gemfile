@@ -49,6 +49,8 @@ gem 'sitemap', '=0.3.3'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'pry'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
 
 group :test, :development do
   gem 'dotenv-rails'
